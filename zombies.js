@@ -187,8 +187,9 @@ Player.prototype.takeItem = function(item) {
  */
 
 Player.prototype.discardItem = function(item) {
-  if (this.getPack().indexOf(item) !== -1) {
-    this.getPack().splice(this.getPack().indexOf(item), 1);
+  let indexOf = this.getPack().indexOf(item);
+  if (indexOf !== -1) {
+    this.getPack().splice(indexOf, 1);
     console.log(
       item.name + " has been discarded from " + this.name + "'s pack."
     );
@@ -224,14 +225,17 @@ Player.prototype.equip = function(itemToEquip) {
     console.log(itemToEquip.name + " is not a weapon.");
     return false;
   }
-  if (this.getPack().indexOf(itemToEquip) === -1) {
+
+  indexOf = this.getPack().indexOf(itemToEquip);
+
+  if (indexOf === -1) {
     console.log(
       this.name + " doesn't have " + itemToEquip.name + " in their pack."
     );
     return false;
   }
   if (this.equipped) {
-    this.getPack()[this.getPack().indexOf(itemToEquip)] = this.equipped;
+    this.getPack()[indexOf] = this.equipped;
     console.log(
       itemToEquip.name +
         " is now equipped, and " +
@@ -240,10 +244,8 @@ Player.prototype.equip = function(itemToEquip) {
     );
     this.equipped = itemToEquip;
     return true;
-  }
-
-  if (!this.equipped) {
-    this.getPack().splice(this.getPack().indexOf(itemToEquip), 1);
+  } else {
+    this.getPack().splice(indexOf, 1);
     this.equipped = itemToEquip;
     console.log(itemToEquip.name + " is now equipped.");
   }
@@ -351,7 +353,7 @@ Player.prototype.equippedWith = function() {
  */
 
 function Zombie(health, strength, speed) {
-  this._maxHealth = health;
+  const maxHealth = health;
   this.health = health;
   this.strength = strength;
   this.speed = speed;
