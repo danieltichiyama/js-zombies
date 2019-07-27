@@ -29,8 +29,8 @@ function Item(name) {
  */
 
 function Weapon(name, damage) {
-  this.damage = damage;
   Item.call(this, name);
+  this.damage = damage;
 }
 
 /**
@@ -57,8 +57,8 @@ Weapon.prototype = Object.create(Item.prototype);
  */
 
 function Food(name, energy) {
-  this.energy = energy;
   Item.call(this, name);
+  this.energy = energy;
 }
 
 /**
@@ -91,8 +91,8 @@ Food.prototype = Object.create(Item.prototype);
  */
 
 function Player(name, health, strength, speed) {
-  this._pack = [];
-  this._maxHealth = health;
+  const pack = [];
+  const maxHealth = health;
   this.name = name;
   this.health = health;
   this.strength = strength;
@@ -101,11 +101,11 @@ function Player(name, health, strength, speed) {
   this.equipped = false;
 
   this.getPack = function() {
-    return this._pack;
+    return pack;
   };
 
   this.getMaxHealth = function() {
-    return this._maxHealth;
+    return maxHealth;
   };
 }
 
