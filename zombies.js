@@ -17,6 +17,10 @@ class Item {
   get name() {
     return this._name;
   }
+
+  set name(name) {
+    this._name = name;
+  }
 }
 
 /**
@@ -43,6 +47,10 @@ class Weapon extends Item {
 
   get damage() {
     return this._damage;
+  }
+
+  set damage(num) {
+    this._damage = num;
   }
 }
 
@@ -75,6 +83,10 @@ class Food extends Item {
 
   get energy() {
     return this._energy;
+  }
+
+  set energy(num) {
+    this._energy = num;
   }
 }
 
@@ -129,24 +141,40 @@ class Player {
     return this._name;
   }
 
+  set name(str) {
+    this._name = str;
+  }
+
   get health() {
     return this._health;
   }
 
-  set health(energy) {
-    this._health = energy;
+  set health(num) {
+    this._health = num;
   }
 
   get strength() {
     return this._strength;
   }
 
+  set strength(num) {
+    this._strength = num;
+  }
+
   get speed() {
     return this._speed;
   }
 
+  set speed(num) {
+    this._speed = num;
+  }
+
   get isAlive() {
     return this._isAlive;
+  }
+
+  set isAlive(boolean) {
+    this._isAlive = boolean;
   }
 
   get equipped() {
@@ -179,8 +207,9 @@ class Player {
   }
 
   discardItem(item) {
-    if (this.getPack().indexOf(item) !== -1) {
-      this.getPack().splice(this.getPack().indexOf(item), 1);
+    let indexOf = this.getPack().indexOf(item);
+    if (indexOf !== -1) {
+      this.getPack().splice(indexOf, 1);
       console.log(
         item.name + " has been discarded from " + this.name + "'s pack."
       );
@@ -212,9 +241,7 @@ class Player {
       );
       this.equipped = itemToEquip;
       return true;
-    }
-
-    if (!this.equipped) {
+    } else {
       this.getPack().splice(this.getPack().indexOf(itemToEquip), 1);
       this.equipped = itemToEquip;
       console.log(itemToEquip.name + " is now equipped.");
@@ -412,16 +439,32 @@ class Zombie {
     return this._health;
   }
 
+  set health(num) {
+    this._health = num;
+  }
+
   get strength() {
     return this._strength;
+  }
+
+  set strength(num) {
+    this._strength = num;
   }
 
   get speed() {
     return this._speed;
   }
 
+  set speed(num) {
+    this._speed = num;
+  }
+
   get isAlive() {
     return this._isAlive;
+  }
+
+  set isAlive(boolean) {
+    this._isAlive = boolean;
   }
 }
 
